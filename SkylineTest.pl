@@ -1,10 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Carga el programa del estudiante junto a este.
+%% Carga el programa Skyline junto a este.
 
 :- consult('Skyline').
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% TEST PARA CORRECCIÓN
+%% TEST PARA CORRECCIÃ“N
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% test(N_orden,DEF_EDIFICIO,SKYLINE,DIBUJO).
@@ -31,7 +31,7 @@ test(4,[ed(2,9,2),ed(4,7,4),ed(3,8,3),ed(5,6,5),ed(1,10,1)],
     ).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% No debería haber colisiones entre nombres de predicados
+%% No deberÃ­a haber colisiones entre nombres de predicados
 %% definidos por programa.
 
 test_resuelveSkyline :- test_resuelveSkyline(1),
@@ -41,7 +41,7 @@ test_resuelveSkyline :- test_resuelveSkyline(1),
 
 test_resuelveSkyline(N):-
 	test(N,EDIFS,SOL,_),
-	write('En el test número '), write(N),
+	write('En el test nÃºmero '), write(N),
 	resuelveSkyline(EDIFS,SKL),!,
 	test_rskl_segunda(SOL,SKL).
 
@@ -64,7 +64,7 @@ test_iguales([X|R1],L2) :-
 	test_quitar(X,L2,L3),!,
 	test_iguales(R1,L3).
 
-%% quita el elemento primer argumento, todas las veces que esté
+%% quita el elemento primer argumento, todas las veces que estÃ©
 %
 test_quitar(_,[],[]).
 test_quitar(X,[X|R],R2):- !, test_quitar(X,R,R2).
@@ -76,7 +76,7 @@ test_quitar(X,[Y|R],[Y|R2]):- test_quitar(X,R,R2).
 
 test_dibujaSkyline(N):-
 	test(N,_,SOL,DIB),
-	nl, write(' La solución es: '),nl,
+	nl, write(' La soluciÃ³n es: '),nl,
 	write(DIB),
 	nl, write('La respuesta del estudiante es '),nl,
 	dibujaSkyline(SOL).
@@ -91,34 +91,34 @@ test_divide :- test_divide(1),
 
 test_divide(N):-
 	test(N,EDFS,_,_),
-        write('En el test número '), write(N), nl,
+        write('En el test nÃºmero '), write(N), nl,
 	divide(EDFS,E1,E2),
 	test_tamanyo(E1,N1), test_tamanyo(E2,N2),
 	dif_menor_q_uno(N1,N2),!,
 	segunda_condicion(E1,E2).
 test_divide(_):-
-	write('No divide en dos listas de tamaño igual o con una diferencia de uno. Luego no cumple la especificación.'),nl.
+	write('No divide en dos listas de tamaÃ±o igual o con una diferencia de uno. Luego no cumple la especificaciÃ³n.'),nl.
 
 segunda_condicion(E1,E2):-
-	test_disj(E2,E1), !, write('Divide cumple la especificación.'),nl.
+	test_disj(E2,E1), !, write('Divide cumple la especificaciÃ³n.'),nl.
 segunda_condicion(_,_):-
-	write('Divide no cumple la especificación, porque las listas no son disjuntas.\n'),nl.
+	write('Divide no cumple la especificaciÃ³n, porque las listas no son disjuntas.\n'),nl.
 
 
 %% Para comprobar que divide(EDIFS,E1,E2) cumple con su
-%% especificación: 'divide la lista de entrada en dos listas
-%% disjuntas y la diferencia de tamaño entre ellas es a lo
+%% especificaciÃ³n: 'divide la lista de entrada en dos listas
+%% disjuntas y la diferencia de tamaÃ±o entre ellas es a lo
 %% sumo uno.'
 %%
 %% Primero hay que programar que dos listas son
 %% disjuntas, es decir, no comparten elementos
 %% independientemente del orden.
-%% En segundo lugar hay que calcular el tamaño de as listas y
-%% finalmente comprobar si la diferencia de tamaños de dos
+%% En segundo lugar hay que calcular el tamaÃ±o de as listas y
+%% finalmente comprobar si la diferencia de tamaÃ±os de dos
 %% listas es menor o igual a uno.
 %%
-%% Este algoritmo puede optimizarse. En esta programación
-%% solo se cambia el orden: primero se compara los tamaños y
+%% Este algoritmo puede optimizarse. En esta programaciÃ³n
+%% solo se cambia el orden: primero se compara los tamaÃ±os y
 %% luego se comprueba sin son disjuntos.
 
 test_disj([],_).
@@ -134,7 +134,7 @@ test_tamanyo([_|R],N) :- test_tamanyo(R,M), N is M+1.
 dif_menor_q_uno(N1,N2):- N1>=N2,!, X is N1-N2, test_decide(X).
 dif_menor_q_uno(N1,N2):- N2>N1,!, X is N2-N1, test_decide(X).
 
-test_decide(0):- !,write('Sí, la diferencia es cero.'),nl.
-test_decide(1):- !,write('Sí, la diferencia es uno.'),nl.
+test_decide(0):- !,write('SÃ­, la diferencia es cero.'),nl.
+test_decide(1):- !,write('SÃ­, la diferencia es uno.'),nl.
 test_decide(_):- write('No, la diferencia es superior a uno.'),nl.
 
